@@ -119,7 +119,7 @@ def plot_all(
             try:
                 axi = axs[ix]
             except TypeError:
-                axi = ax
+                axi = axi
 
             axi = sns.lineplot(
                 data=hour_df,

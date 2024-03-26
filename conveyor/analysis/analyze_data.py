@@ -69,6 +69,10 @@ def plot_all(
 
         nrows = len(hours)
 
+        # Continue for days without signal
+        if nrows == 0:
+            continue
+
         # figure size in inches
         rcParams['figure.figsize'] = 50, nrows*4
 
@@ -111,7 +115,11 @@ def plot_all(
                             hour_repeat_channels.append(action)
 
 
-            axi = axs[ix]
+            # Deal with days with only one hour:
+            try:
+                axi = axs[ix]
+            except TypeError:
+                axi = ax
 
             axi = sns.lineplot(
                 data=hour_df,
